@@ -1,0 +1,49 @@
+html(lang="en")
+  head
+    meta(name="theme-color" content="#f44336")
+    
+    // Javascript includes
+    script(src="/js/angular.min.js")
+    script(src="/js/angular-animate.min.js")
+    script(src="/js/angular-aria.min.js")
+    script(src="/js/angular-messages.min.js")
+    script(src="/js/angular-material.min.js")
+    script(src="/js/angular-cookie.min.js")
+    script(src="/js/main.js")
+    
+    // CSS includes
+    link(href="/css/angular-material.min.css" rel="stylesheet")
+    link(href="/css/icons.css" rel="stylesheet")
+    link(href="/css/index.css" rel="stylesheet")
+
+  body(ng-app="svg-template-editor")
+    md-content(layout="column" controller="mainController")
+      md-toolbar.md-tall.md-accent.md-whiteframe-5dp
+        span(flex)
+        .md-toolbar-tools
+          h2.md-flex
+            | Template Editor
+          span(flex)
+          md-button.md-icon-button(aria-label="Open")
+            md-tooltip(md-direction="bottom") Open
+            i.material-icons insert_drive_file
+          md-button.md-icon-button(aria-label="Save")
+            md-tooltip(md-direction="bottom") Save
+            i.material-icons save
+      .container(flex="100" layout="row" layout-align="space-around none")
+        .editor-layout(flex="20" layout="column" layout-align="space-around center" layout-padding)
+          .sub-container(layout="column")
+            md-input-container(flex="1" layout="column")
+              md-select(ng-model="selectedItem" md-selected-text="getSelectedText()")
+                md-optgroup(label="items")
+                  md-option(ng-value="item" ng-repeat="item in items") Item {{item}}
+            md-input-container.auto-margin
+              label Enter text for element {{currentElement}}
+              textarea(ng-model="user.biography" rows="5" md-select-on-focus)
+          md-input-container(flex="2")
+            md-button.md-icon-button(aria-label="Clear")
+              i.material-icons clear
+            md-button.md-icon-button(aria-label="Accept")
+              i.material-icons done
+        .preview-layout(flex="80" layout="column" layout-align="space-around center" layout-padding)
+          img(src="http://via.placeholder.com/350x700")
